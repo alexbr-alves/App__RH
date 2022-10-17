@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity, TextInput} from "react-native";
 import api from '../../services/api'
 
 import styles from './styles';
@@ -25,6 +25,8 @@ export default function Home(){
             {console.log(error)})       
         }, []);
 
+
+
     const openExpansion = (id) => {
         if(id === expansion){
         setExpansion(false)
@@ -32,6 +34,8 @@ export default function Home(){
             setExpansion(id)
         }
     };
+
+
 
     const searchFilterFunction = (text) => {
         if(text){
@@ -63,6 +67,8 @@ export default function Home(){
         }
     }
 
+
+
     function formatarTelefone(numero){
         const parte1 = numero.slice(0,2);
         const parte2 = numero.slice(2,4);
@@ -70,6 +76,10 @@ export default function Home(){
         const parte4 = numero.slice(9,13);
         return `+${parte1} (${parte2}) ${parte3}-${parte4}`
     }
+
+
+
+
     function formatarData(numero){
         const data = new Date(numero)
 
