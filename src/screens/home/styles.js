@@ -56,14 +56,14 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center",   
     },
-    body_tableheader__foto: {
+    body_tableheader__photo: {
         fontFamily: 'Roboto_500Medium',
         fontSize: 16,
         lineHeight: 19,
         color: "#ffffff",
         marginLeft: 15
     },
-    body_tableheader__nome: {
+    body_tableheader__name: {
         fontFamily: 'Roboto_500Medium',
         fontSize: 16,
         lineHeight: 19,
@@ -86,13 +86,13 @@ export default StyleSheet.create({
         borderTopWidth: 0.5,
         borderColor: 'gray'
     },
-    body__list__foto: {
+    body__list__photo: {
         height: 34,
         width: 34,
         borderRadius: 17,
         marginLeft: 16  
     },
-    body__list__nome: {
+    body__list__name: {
         fontFamily: 'Roboto_400Regular',
         fontSize: 16,
         lineHeight: 19,

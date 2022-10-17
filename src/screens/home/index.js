@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, FlatList, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
-
 import api from '../../services/api'
 
 import styles from './styles';
@@ -17,7 +16,7 @@ export default function Home(){
     
     
     useEffect(() => {
-        api.get('/funcionarios')
+        api.get('/employees')
         .then(res => {
             setdata(res.data)
             setFilterData(res.data)
@@ -36,26 +35,26 @@ export default function Home(){
 
     const searchFilterFunction = (text) => {
         if(text){
-            const newDataNome = data.filter((item) => {
-                const itemNome = item.nome ? item.nome.toUpperCase() : "".toLowerCase();
+            const newDataName = data.filter((item) => {
+                const itemNome = item.name ? item.name.toUpperCase() : "".toLowerCase();
                 const textData = text.toUpperCase();
                 return itemNome.indexOf(textData) > -1 
             })
-            const newDataCargo = data.filter((item) => {
-                const itemcargo = item.cargo ? item.cargo.toUpperCase() : "".toLowerCase();
+            const newDataJob = data.filter((item) => {
+                const itemJob = item.job ? item.job.toUpperCase() : "".toLowerCase();
                 const textData = text.toUpperCase();
-                return itemcargo.indexOf(textData) > -1
+                return itemJob.indexOf(textData) > -1
             })
-            const newDataTelefone = data.filter((item) => {
-                const itemTelefone = item.telefone ? item.telefone.toUpperCase() : "".toLowerCase();
+            const newDataPhone = data.filter((item) => {
+                const itemPhone = item.phone ? item.phone.toUpperCase() : "".toLowerCase();
                 const textData = text.toUpperCase();
-                return itemTelefone.indexOf(textData) > -1
+                return itemPhone.indexOf(textData) > -1
             })
-            setFilterData(newDataNome);
-            if(newDataNome.length === 0){
-                setFilterData(newDataCargo)
-            }if(newDataCargo.length === 0 && newDataNome.length === 0){
-                setFilterData(newDataTelefone)
+            setFilterData(newDataName);
+            if(newDataName.length === 0){
+                setFilterData(newDataJob)
+            }if(newDataJob.length === 0 && newDataName.length === 0){
+                setFilterData(newDataPhone)
             }
             setSearch(text)
         }else{
@@ -72,10 +71,25 @@ export default function Home(){
         return `+${parte1} (${parte2}) ${parte3}-${parte4}`
     }
     function formatarData(numero){
-        const dia = numero.slice(0,2);
-        const mes = numero.slice(2,4);
-        const ano = numero.slice(4,8);
-        return `${dia}/${mes}/${ano}`
+        const data = new Date(numero)
+
+        function formatarDay(day){
+            if(day < 9){
+                return `0${day}`
+            }else{
+                return day
+            }
+        }
+
+        function formatarMonth(month){
+            if(month < 9){
+                return `0${month + 1}`
+            }else{
+                return month + 1
+            }
+        }
+
+        return `${formatarDay(data.getDate())}/${formatarMonth(data.getMonth())}/${data.getFullYear()}`
     }
     return(
         <View style={styles.container}>
@@ -91,6 +105,7 @@ export default function Home(){
                 <TextInput
                     style={styles.body__input__text}
                     placeholder="Pesquisa"
+                    placeholderTextColor={'#9E9E9E'}
                     value={search}
                     onChangeText={(text) => searchFilterFunction(text)}
                     
@@ -99,43 +114,45 @@ export default function Home(){
             </View>
             <View style={styles.body__list}>
             <View style={styles.body_tableheader}>
-                <Text style={styles.body_tableheader__foto}>FOTO</Text>
-                <Text style={styles.body_tableheader__nome}>NOME</Text>
+                <Text style={styles.body_tableheader__photo}>FOTO</Text>
+                <Text style={styles.body_tableheader__name}>NOME</Text>
                 <View style={styles.body_tableheader__point}/>
             </View>
             <FlatList
                 data={filterData}
-                keyExtractor={({id}, index) => id}
+                keyExtractor={({id}, index) => id}a
                 showsVerticalScrollIndicator={false}
                 renderItem={({item}) => (
                 <View>
                
                     <TouchableOpacity style={styles.body__list__smallCard} 
-                    onPress={() => openExpansion(item.id)}>
-                        
-                        <Image source={{uri: item.foto}} style={styles.body__list__foto}/>
-                        <Text style={styles.body__list__nome}>{item.nome}</Text>
-                       
+                    onPress={() => openExpansion(item.id)}>  
+
+                        <Image source={{uri: item.image}} style={styles.body__list__photo}/>
+                        <Text style={styles.body__list__name}>{item.name}</Text>                     
                         <Image style={styles.body__list__arrow} source={expansion === item.id ? arrowUp : arrowDown}/>
-                        
+
                     </TouchableOpacity>
-                    {expansion === item.id? 
-                        <View style={styles.body__list__extensionCard}>
-                            <View style={styles.body__list__extensionCard__itens}>
-                                <Text style={styles.body__list__extensionCard__item__left} >Cargo</Text>
-                                <Text style={styles.body__list__extensionCard__item__right}>{item.cargo}</Text>
+
+                    {
+                        expansion === item.id? 
+                        
+                            <View style={styles.body__list__extensionCard}>
+                                <View style={styles.body__list__extensionCard__itens}>
+                                    <Text style={styles.body__list__extensionCard__item__left} >Cargo</Text>
+                                    <Text style={styles.body__list__extensionCard__item__right}>{item.job}</Text>
+                                </View>
+                                <View style={styles.body__list__extensionCard__itens}>
+                                    <Text style={styles.body__list__extensionCard__item__left}>Data de admissão</Text>
+                                    <Text>{formatarData(item.admission_date)}</Text>
+                                </View>
+                                <View style={styles.body__list__extensionCard__itens}>
+                                    <Text style={styles.body__list__extensionCard__item__left}>Telefone</Text>
+                                    <Text style={styles.body__list__extensionCard__item__right}>{formatarTelefone(item.phone)}</Text>
+                                </View>
                             </View>
-                            <View style={styles.body__list__extensionCard__itens}>
-                                <Text style={styles.body__list__extensionCard__item__left}>Data de admissão</Text>
-                                <Text>{formatarData(item.data_de_admissao)}</Text>
-                            </View>
-                            <View style={styles.body__list__extensionCard__itens}>
-                                <Text style={styles.body__list__extensionCard__item__left}>Telefone</Text>
-                                <Text style={styles.body__list__extensionCard__item__right}>{formatarTelefone(item.telefone)}</Text>
-                            </View>
-                        </View>
-                    :
-                    null
+                            :
+                        null
                     }
                     
                 </View>
