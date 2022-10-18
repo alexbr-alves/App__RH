@@ -24,7 +24,7 @@ aponte a câmera do seu celular com o aplicativo Expo Go instalado </h3>
 
 <h3> No Front-end temos uma aplicação simples e  moderna que busca otimizar espaço na tela e trazer 
 conforto no momento de utilizar o aplicativo. Como por exemplo: pesquisar e obter resposta de pesquisa 
-sem a necessidade de sair da tela e obter informações adcionais do proficionais na lista com apenas um click no card. <br>
+sem a necessidade de sair da tela e obter informações adcionais do profissionais na lista com apenas um click no card. <br>
 Em minha visão, a aplicação dispensa o uso de bibliotecas de animação. 
 </h3>
 <br>
