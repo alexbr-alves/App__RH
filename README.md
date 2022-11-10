@@ -1,12 +1,22 @@
 <h1 align="center">Aplicativo de RH</h1>
+
 <br>
 <br>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/103543739/196267550-a05913fc-044d-4208-a978-9ee2194be065.png">
+<img src="https://user-images.githubusercontent.com/103543739/201141749-4e0bc04e-625b-4ec7-9cef-0b1d3267e831.png">
+</p>
+
+
+
+<br>
+<br>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/103543739/201142615-ea3afcae-9888-4f9c-b326-8e9dfb374156.png">
 </p>
 
 <h3 font-size="12px" align="center"> Para um melhor experiência, <br>
 aponte a câmera do seu celular com o aplicativo Expo Go instalado </h3>
+
 
 
 <h2>PRÉ REQUISITOS:</>
@@ -62,8 +72,12 @@ para o endereço fornecido pelo JSON-SERVER
 <h2>VIDEO DEMOSTRATIVO</h2>
 <br>
 
+https://user-images.githubusercontent.com/103543739/201145004-f8258ec6-0278-4474-9feb-b22ce6ac4525.mp4
 
-https://user-images.githubusercontent.com/103543739/196303496-f0444695-1c7e-433a-acbf-3207d110457c.mp4
 
+
+<h2>Demostrações complementares</h2>
+
+![modelo 3 telas](https://user-images.githubusercontent.com/103543739/201143628-fec8c5d6-9054-48c3-9f61-426bb9beaf0f.png)
 
 
